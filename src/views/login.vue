@@ -19,7 +19,7 @@
           ></el-input>
       </el-form-item>
       <el-form-item>
-           <el-button type="primary" class="login-btn">登录</el-button>
+           <el-button type="primary" class="login-btn" @click="loginsubmit">登录</el-button>
       </el-form-item>
     </el-form>
      </div>
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { login } from '@/apis/users.js'
 export default {
   data () {
     return {
@@ -48,6 +49,29 @@ export default {
         ]
       }
     }
+  },
+  methods: {
+    loginsubmit () {
+      this.$refs.loginForm.validate(async (valid) => {
+        if (valid) {
+          let res = await login(this.loginForm)
+          if (res.data.message === '登录成功') {
+            // 将token数据进行本地存储
+            localStorage.setItem('toutiao_houtai_token', res.data.data.token)
+            // 跳转到后台管理首页
+            this.$router.push({ path: '/index' })
+          } else {
+            this.$message.error(res.data.message)
+          }
+        } else {
+          // 验证不通过 给提示
+          this.$message.error('用户数据输入不合法')
+          // 终止本次请求
+          return false
+        }
+      })
+    }
+
   }
 }
 </script>
