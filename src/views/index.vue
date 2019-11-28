@@ -27,7 +27,7 @@
               <i class="el-icon-location"></i>
               <span>文章管理</span>
             </template>
-            <el-menu-item index="/posts">
+            <el-menu-item index="postList">
                 <i class="el-icon-location"></i>
                 <span>文章列表</span>
             </el-menu-item>

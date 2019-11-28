@@ -6,6 +6,7 @@ import VueRouter from 'vue-router'
 import Login from '@/views/login.vue'
 import Index from '@/views/index.vue'
 import Wel from '@/views/welcomePage.vue'
+import PostList from '@/views/postList.vue'
 
 // Use
 Vue.use(VueRouter)
@@ -35,6 +36,11 @@ let router = new VueRouter({
           name: 'Wel',
           path: 'wel',
           component: Wel
+        },
+        {
+          name: 'PostList',
+          path: 'postList',
+          component: PostList
         }
       ]
     }
@@ -43,7 +49,7 @@ let router = new VueRouter({
 // 添加导航守卫
 router.beforeEach((to, from, next) => {
   if (to.path !== '/login') {
-    let token = localStorage.getItem('heima_back_39_token')
+    let token = localStorage.getItem('toutiao_houtai_token')
     if (token) {
       next()
     } else {
