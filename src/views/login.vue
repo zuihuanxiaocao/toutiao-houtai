@@ -55,6 +55,7 @@ export default {
       this.$refs.loginForm.validate(async (valid) => {
         if (valid) {
           let res = await login(this.loginForm)
+          console.log(res)
           if (res.data.message === '登录成功') {
             // 将token数据进行本地存储
             localStorage.setItem('toutiao_houtai_token', res.data.data.token)
